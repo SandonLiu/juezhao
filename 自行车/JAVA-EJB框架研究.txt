@@ -1,0 +1,49 @@
+[VB的XML设定]
+<binding
+accessName="SNR7050NonyuShiireJohoShutokuBC"
+invoker="EJBInvoker"
+homeClassName="jp.co.autobacs.atom.sn.bc.snr7050.fixedroot.EJBGWSNR7050LogicHome"
+jndiName="SNR7050/SNR7050"
+methodName="SNR7050NonyuShiireJohoShutokuBCExecuteMain"
+inDataSet="Autobacs.Atom.SN.B_SNR7050NonyuShiireJohoShutoku_I_DS,
+SNR7050Entity"
+outDataSet="Autobacs.Atom.SN.B_SNR7050NonyuShiireJohoShutoku_O_DS,
+SNR7050Entity"
+inLogicData="jp.co.autobacs.atom.sn.bc.snr7050.snr7050nonyushiirejohoshutokubc.ap.fixedejbgw.EJBGWInB_SNR7050NonyuShiireJohoShutoku_I_DS"/>   （这里指定了EJB的入参类型）
+
+[JAVA的调用方式]
+EJBGWSNR7050LogicBean.java	
+	EJBGWInB_SNR7050NonyuShiireJohoShutoku_I_DS.java[inParameter]
+	EJBGWOutB_SNR7050NonyuShiireJohoShutoku_O_DS.java[outParameter]
+	SNR7050NonyuShiireJohoShutokuBCLogicBean.java(Impl ISNR7050NonyuShiireJohoShutokuBCLogicBean)
+		executeMain
+			ControlExecuteMain.java(extds: SNR7050NonyuShiireJohoShutokuBCControlCommon)
+				SNR7050NonyuShiireJohoShutokuBCLogicData.java(Impl Serializable)[ret更新処理，inParameter+outParameter]
+					B_SNR7050NonyuShiireJohoShutoku_I_DSSubData.java(@data)
+						List->SNR7050NonyuShiireJohoShutoku_I_DTSubData.java	
+					
+					B_SNR7050NonyuShiireJohoShutoku_O_DSSubData.java(@data)
+						List->SNR7050NonyuShiireJohoShutoku_O_DTSubData.java
+
+	COMMONRESPONSEDATATABLEDataTable.java
+	CommonRequestDataTableSubData.java
+	SNR7050NONYUSHIIREJOHOSHUTOKU_O_DTDataTable.java	
+
+[SQL调用方式1]
+SNR7050NonyuShiireJohoShutokuBCControlCommon(因为被ControlExecuteMain继承，可以直接用)
+	Impl:	ISNR7050NonyuShiireJohoShutokuDACDAO.java(SQL正文)
+				SNR7050NonyuShiireJohoShutokuDACDAOData.java(result更新処理inParameter)
+
+[SQL调用方式2]
+SNR7050NonyuShiireJohoShutokuDACDAOImpl.java(因为未被ControlExecuteMain继承，需要对类进行实例化)
+	extds:	SNR7050NonyuShiireJohoShutokuDACDAO.java(SQL正文)
+				Impl:	ISNR7050NonyuShiireJohoShutokuDACDAO.java(SQL正文，这个接口跟SQL无关，是给SNR7050NonyuShiireJohoShutokuBCLogicBean用的，虽然没用到但也不能删)
+							SNR7050NonyuShiireJohoShutokuDACDAOData.java(result更新処理inParameter)
+
+fixed
+	SNR7050NonyuShiireJohoShutokuBCDependencyResolver.java	（不知道干嘛用的，删除了对项目没有影响）
+	CommonResponseDataTableSubData.java	（不知道干嘛用的，删除了对项目没有影响）
+
+fixedejbgw
+	SNR7050NONYUSHIIREJOHOSHUTOKU_I_DTDataTable.java（给EJBGWInB_SNR7050NonyuShiireJohoShutoku_I_DS.java用的）
+	COMMONREQUESTDATATABLEDataTable.java（给EJBGWOutB_SNR7050NonyuShiireJohoShutoku_O_DS.java用的）

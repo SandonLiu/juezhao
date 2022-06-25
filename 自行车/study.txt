@@ -1,0 +1,159 @@
+decode( 
+            ? 
+            , '1'
+            , SMTM0026.SIIRE_CD_10
+            , '2'
+            , SMTM0026.SIIRE_CD_20
+            , SMTM0026.SIIRE_CD_30
+        )
+
+看？	等于1	SMTM0026.SIIRE_CD_10
+	等于2	SMTM0026.SIIRE_CD_20
+	else	SMTM0026.SIIRE_CD_30
+
+
+--------------------------------------
+
+trim	去空格
+
+--------------------------------------
+
+NVL ( expr1 , expr2 )
+如果表达式expr1为 NULL ，则返回expr2的值。空值逻辑的缩写
+
+--------------------------------------
+TO_MULTI_BYTE将单字节字符转换为相应的多字节字符并char返回
+
+--------------------------------------
+UTL_I18N.TRANSLITERATE(SMTM0220.SHOHIN_NM, 'kana_hiragana')
+'kana_hiragana' 半角カタカナのみをひらがなに変換する
+--------------------------------------
+VB重构
+
+Ctrl R M 抽出方法
+
+Ctrl G 指定行移动
+
+Ctrl D 复制上一行
+
+Ctrl K  Ctrl K 加書簽
+
+Ctrl K F  FORMAT
+
+^\s*\n　空行替換
+
+--------------------------------------
+Private Sub Worksheet_Activate()
+ActiveSheet.Name = Month(Now()) & "." & Day(Now())
+End Sub
+--------------------------------------
+Private Sub Worksheet_Activate()
+ActiveSheet.Name = Worksheets(3).Cells(3, 8).Value
+ Worksheets(1).Cells(6, 3).Value = Date
+ 
+ Worksheets(3).Cells(8, 22).Value = Date
+ Worksheets(3).Cells(8, 23).Value = Date
+ Worksheets(3).Cells(8, 24).Value = Date
+ Worksheets(3).Cells(8, 25).Value = Date
+ 
+ Worksheets(3).Cells(3, 30).Value = Date
+End Sub
+
+
+*.xml
+C:\javaSource\basenetJava
+
+
+例：select  replace ('111222333444','222','888') from dual;
+输出为 '111888333444'
+
+
+例：left ('111222333444', 7)
+输出为 '1118883'
+
+--------------------------------------
+VB
+ LogisticsMultiMultiRow.Adapter.GetCell(LogisticsMultiMultiRow.ActiveMRowIndex, "SHOHIN_CD").Value = outputDT(0).SHOHIN_CD
+
+
+--------------------------------------
+
+①NonyushaCDTextBox_Validating方法名字无所谓，NonyushaCDTextBox_Valid123ating也能生效　　　YES
+
+
+
+②这段代码的含义不是チェック，而是通过光标移动到下一个项目，跳出check防止死循环　　　YES
+
+
+
+'納入者コード（仕入先コード）の単項目チェック
+If NonyushaCDTextBox.Validate = False Then
+NonyushaCDTextBox.Focus()
+Exit Sub
+
+'End If
+End If
+
+③NonyushaCDTextBox.Validate这里可能隐含调用方法，当项目为活性的时候，不进行有效性check
+
+KariDenNoTextBox.NotifyInvalid(errors)
+DenpNOTextBox.NotifyValid()
+
+DenpYMDTextBox.Focus() 光标移动到下一个地方
+
+在DenpYMDTextBox_Validating方法最后加上这段代码
+NonyushaCDTextBox.Enabled = True
+NonyushaCDTextBox.ReadOnly = False
+
+LBC-vb
+SH0052-SC0014ーSCShohinJohoShutokuTempoShohinTempoLBC
+
+SH0052
+SH0052_商品情報取得（店舗商品＋基本商品）（発注）改（店舗）
+SH0046_商品情報取得（店舗商品＋基本商品）（発注）改（センター）
+単品区分のチェック TANPIN_KBN <> "0" error condition
+
+
+店舗取扱区分のチェック TEN_TORI_KBN <> "1" error condition
+
+
+経費区分と商品分類コードのチェック inTempolDt(0).KEIHI_KBN
+
+
+BC-java
+
+-SH0046
+SH0046_商品情報取得（店舗商品＋基本商品）（発注）改（センター）
+
+単品区分のチェック 473
+
+店舗取扱区分のチェック 545
+
+経費区分と商品分類コードのチェック 565
+
+--------------------------------------
+.bat
+
+REM 为注释命令
+@echo off 关闭回显
+@echo on  打开回显
+格式： %date%
+结果： 2019/02/14 周四
+
+格式： %time%
+结果： %time%
+
+echo 完全路径：%0
+echo 去掉引号：%~0
+echo 所在分区：%~d0
+echo 所处路径：%~p0
+echo 文件名：%~n0
+echo 扩展名：%~x0
+echo 文件属性：%~a0
+echo 修改时间：%~t0
+echo 文件大小：%~z0
+
+
+--------------------------------------
+画面遷移Transit
+活性设定.Enabled 

@@ -1,0 +1,11 @@
+前提：Java已经成功生成了 .if .gc1 .tlb 这三个文件
+
+Step1: 把registerXXXXXXX.bat文件放入  D:\ATOMS\Tools\woifgen （与 woifgen.bat 同目录下）
+
+Step2: 编辑 registerXXXXXXX.bat 的pathFrom参数的路径
+	eg:
+ 		C:\javaSource\basenetJava\%object%\OPF\%object%\package\if\
+		C:\javaSource\basenetJava\SSR0130\OPF\SSR0130\package\if
+
+
+Step3: 如果你要注册SSR0130，把这个bat文件改名 registerXXXXXXX.bat -> registerSSR0130.bat
